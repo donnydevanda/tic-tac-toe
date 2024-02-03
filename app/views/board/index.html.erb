@@ -1,0 +1,99 @@
+<h1 class="text-center">Tic Tac Toe </h1>
+<div id="userNameDisplay" class="text-center"></div>
+<div id="board">
+  <table id="game" cellspacing="0">
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+
+  <ul id="menu">
+    <li id="status"></li>
+    <li>
+      <a href="#new-match" id="new-match" class="hidden button">NEW OPPONENT</a>
+      <a href="#restart" id="restart" class="hidden button">RESTART</a>
+    </li>
+  </ul>
+</div>
+
+<!-- Modal -->
+<div class="modal" tabindex="-1" role="dialog" id="nameModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Enter Your Name</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="nameForm">
+          <div class="form-group">
+            <label for="userName">Your Name:</label>
+            <input type="text" class="form-control" id="userName" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // app/assets/javascripts/welcome.js
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Show the modal when the page loads
+  $('#nameModal').modal('show');
+
+  // Save user name to session via AJAX when the form is submitted
+  $('#nameForm').submit(function(event) {
+    event.preventDefault();
+
+    // Get the user's name from the form
+    var userName = $('#userName').val();
+
+    // Save user name to session via AJAX
+    saveUserNameToSession(userName);
+
+    // Display the user's name on the page
+    displayUserName(userName);
+
+    // Close the modal
+    $('#nameModal').modal('hide');
+  });
+
+  function saveUserNameToSession(userName) {
+    // Make an AJAX request to save user name to session
+    $.ajax({
+      type: 'POST',
+      url: '/save_user_name', // Replace with the actual route to handle this action
+      data: { user_name: userName },
+      success: function(response) {
+        console.log('User name saved to session:', userName);
+      },
+      error: function(error) {
+        console.error('Error saving user name to session:', error);
+      }
+    });
+  }
+
+  function displayUserName(userName) {
+    // Update the DOM to display the user's name
+    $('#userNameDisplay').text('Welcome, ' + userName + '!');
+  }
+});
+
+</script>
