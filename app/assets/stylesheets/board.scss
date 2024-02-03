@@ -1,0 +1,61 @@
+// Place all the styles related to the board controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+  font-family: "Poppins";
+  text-align: center;
+  color: #000;
+}
+
+td {
+  width: 170px;
+  height: 170px;
+  border: 0px solid black;
+  border-right-width: 5px;
+  border-bottom-width: 5px;
+  text-align: center;
+  font-size: 80px;
+  cursor: pointer;
+}
+
+td.O {
+  color: #fc6736;
+}
+td.X {
+  color: #0c2d57;
+}
+
+td:nth-child(3) {
+  border-right-width: 0px;
+}
+tr:last-child td {
+  border-bottom-width: 0px;
+}
+
+#menu {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  opacity: 1;
+  -webkit-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
+}
+
+#game {
+  margin: 80px auto;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+#menu li:first-child {
+  text-align: center;
+}
+
+#menu li:last-child {
+  text-align: center;
+}
+
+.hidden {
+  opacity: 0 !important;
+  pointer-events: none;
+}
